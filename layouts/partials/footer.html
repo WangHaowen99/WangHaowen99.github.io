@@ -1,0 +1,12 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-title">{{ site.Title }}</div>
+      <div class="footer-tagline">{{ site.Params.tagline }}</div>
+    </div>
+    <div class="footer-links">
+      <a href="{{ "/index.xml" | relURL }}">RSS</a>
+      {{ with site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">GitHub</a>{{ end }}
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,18 @@
+<div class="article-meta" aria-label="文章信息">
+  {{ if not .Date.IsZero }}
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+  {{ end }}
+  {{ with .Params.categories }}
+    <span>{{ delimit . " / " }}</span>
+  {{ end }}
+  {{ if .ReadingTime }}
+    <span>{{ .ReadingTime }} 分钟阅读</span>
+  {{ end }}
+</div>
+{{ with .Params.tags }}
+  <div class="tag-row" aria-label="标签">
+    {{ range . }}
+      <a class="tag" href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}"># {{ . }}</a>
+    {{ end }}
+  </div>
+{{ end }}

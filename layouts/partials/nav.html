@@ -1,0 +1,13 @@
+<header class="site-header">
+  <nav class="nav container" aria-label="主导航">
+    <a class="nav-brand" href="{{ "/" | relURL }}" aria-label="{{ site.Title }} 首页">{{ site.Title }}</a>
+    <div class="nav-links">
+      {{ $current := . }}
+      {{ range site.Menus.main }}
+        {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+        {{ $active = or $active (eq $current.RelPermalink (.URL | relURL)) }}
+        <a class="nav-link{{ if $active }} is-active{{ end }}" href="{{ .URL | relURL }}">{{ .Name }}</a>
+      {{ end }}
+    </div>
+  </nav>
+</header>
