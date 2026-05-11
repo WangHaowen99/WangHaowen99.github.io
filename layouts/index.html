@@ -1,0 +1,58 @@
+{{ define "main" }}
+<section class="hero container">
+  <p class="eyebrow">Personal Blog</p>
+  <h1>{{ site.Title }}</h1>
+  <p class="hero-tagline">{{ site.Params.tagline }}</p>
+  <div class="hero-actions">
+    <a class="button button-primary" href="{{ "/posts/" | relURL }}">阅读文章</a>
+    <a class="button" href="{{ "/about/" | relURL }}">关于我</a>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="section-heading">
+    <h2>最近文章</h2>
+    <a href="{{ "/posts/" | relURL }}">全部文章</a>
+  </div>
+  <div class="stack-list">
+    {{ $posts := first 5 (where site.RegularPages.ByDate.Reverse "Section" "posts") }}
+    {{ range $posts }}
+      {{ partial "post-card.html" . }}
+    {{ else }}
+      <p class="muted">还没有文章。</p>
+    {{ end }}
+  </div>
+</section>
+
+<section class="section container">
+  <div class="section-heading">
+    <h2>专栏</h2>
+    <a href="{{ "/series/" | relURL }}">全部专栏</a>
+  </div>
+  <div class="term-grid">
+    {{ range first 6 site.Taxonomies.series.ByCount }}
+      <a class="term-card" href="{{ .Page.RelPermalink }}">
+        <span>{{ .Page.Title }}</span>
+        <strong>{{ .Count }} 篇</strong>
+      </a>
+    {{ else }}
+      <p class="muted">专栏会随着文章自动生成。</p>
+    {{ end }}
+  </div>
+</section>
+
+<section class="section container">
+  <div class="section-heading">
+    <h2>项目</h2>
+    <a href="{{ "/projects/" | relURL }}">全部项目</a>
+  </div>
+  <div class="stack-list">
+    {{ $projects := first 3 (where site.RegularPages.ByDate.Reverse "Section" "projects") }}
+    {{ range $projects }}
+      {{ partial "post-card.html" . }}
+    {{ else }}
+      <p class="muted">项目记录会显示在这里。</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

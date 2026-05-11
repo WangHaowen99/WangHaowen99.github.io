@@ -1,0 +1,26 @@
+{{ $g := site.Params.giscus }}
+{{ if and $g.enabled $g.repo $g.repoID $g.category $g.categoryID }}
+<section class="comments" aria-label="评论">
+  <h2>评论</h2>
+  <script src="https://giscus.app/client.js"
+    data-repo="{{ $g.repo }}"
+    data-repo-id="{{ $g.repoID }}"
+    data-category="{{ $g.category }}"
+    data-category-id="{{ $g.categoryID }}"
+    data-mapping="{{ $g.mapping }}"
+    data-strict="{{ $g.strict }}"
+    data-reactions-enabled="{{ $g.reactionsEnabled }}"
+    data-emit-metadata="{{ $g.emitMetadata }}"
+    data-input-position="{{ $g.inputPosition }}"
+    data-theme="{{ $g.theme }}"
+    data-lang="{{ $g.lang }}"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+{{ else if $g.enabled }}
+<section class="comments comments-empty" aria-label="评论">
+  <h2>评论</h2>
+  <p>Giscus is not configured yet. Enable Discussions, install the Giscus app, then fill `params.giscus.repoID` and `params.giscus.categoryID` in `hugo.toml`.</p>
+</section>
+{{ end }}

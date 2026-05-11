@@ -1,0 +1,17 @@
+{{ define "main" }}
+<section class="page-header container">
+  <p class="eyebrow">{{ .Section | default "Index" }}</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+</section>
+
+<section class="container section">
+  <div class="stack-list">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ partial "post-card.html" . }}
+    {{ else }}
+      <p class="muted">这里还没有内容。</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

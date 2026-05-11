@@ -1,0 +1,7 @@
+{{ $empty := "<nav id=\"TableOfContents\"></nav>" }}
+{{ if and (ne .Params.toc false) (ne .TableOfContents $empty) }}
+  <aside class="toc" aria-label="文章目录">
+    <div class="toc-title">目录</div>
+    {{ .TableOfContents }}
+  </aside>
+{{ end }}

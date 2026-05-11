@@ -1,0 +1,18 @@
+{{ if or .PrevInSection .NextInSection }}
+<nav class="post-nav" aria-label="文章导航">
+  {{ with .PrevInSection }}
+    <a class="post-nav-item" href="{{ .RelPermalink }}">
+      <span>上一篇</span>
+      <strong>{{ .Title }}</strong>
+    </a>
+  {{ else }}
+    <span></span>
+  {{ end }}
+  {{ with .NextInSection }}
+    <a class="post-nav-item next" href="{{ .RelPermalink }}">
+      <span>下一篇</span>
+      <strong>{{ .Title }}</strong>
+    </a>
+  {{ end }}
+</nav>
+{{ end }}

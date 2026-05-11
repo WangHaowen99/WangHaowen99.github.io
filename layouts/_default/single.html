@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="article-layout container">
+  <article class="article">
+    <header class="article-header">
+      <p class="eyebrow">{{ .Section | default "Page" }}</p>
+      <h1>{{ .Title }}</h1>
+      {{ partial "article-meta.html" . }}
+      {{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="prose">
+      {{ .Content }}
+    </div>
+
+    {{ if eq .Section "posts" }}
+      {{ partial "author-signature.html" . }}
+      {{ partial "post-nav.html" . }}
+      {{ partial "giscus.html" . }}
+    {{ end }}
+  </article>
+
+  {{ partial "toc.html" . }}
+</div>
+{{ end }}
