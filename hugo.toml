@@ -1,0 +1,85 @@
+baseURL = "https://WangHaowen99.github.io/"
+languageCode = "zh-CN"
+title = "WangHaowen99"
+enableRobotsTXT = true
+hasCJKLanguage = true
+summaryLength = 120
+timeZone = "Asia/Shanghai"
+
+[pagination]
+pagerSize = 10
+
+[params]
+author = "WangHaowen99"
+tagline = "如无必要，勿增实体。AI for ALL & ALL for AI"
+description = "WangHaowen99 的个人博客，记录技术、项目、专栏和生活。"
+github = "https://github.com/WangHaowen99"
+mainSections = ["posts"]
+
+[params.giscus]
+enabled = true
+repo = "WangHaowen99/WangHaowen99.github.io"
+repoID = ""
+category = "Announcements"
+categoryID = ""
+mapping = "pathname"
+strict = "0"
+reactionsEnabled = "1"
+emitMetadata = "0"
+inputPosition = "bottom"
+theme = "light"
+lang = "zh-CN"
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+series = "series"
+
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML", "RSS"]
+taxonomy = ["HTML", "RSS"]
+term = ["HTML", "RSS"]
+
+[markup]
+  [markup.highlight]
+  noClasses = false
+  lineNos = false
+  style = "github"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+  ordered = false
+
+[[menus.main]]
+name = "首页"
+url = "/"
+weight = 10
+
+[[menus.main]]
+name = "文章"
+url = "/posts/"
+weight = 20
+
+[[menus.main]]
+name = "专栏"
+url = "/series/"
+weight = 30
+
+[[menus.main]]
+name = "项目"
+url = "/projects/"
+weight = 40
+
+[[menus.main]]
+name = "生活"
+url = "/life/"
+weight = 50
+
+[[menus.main]]
+name = "About"
+url = "/about/"
+weight = 60
