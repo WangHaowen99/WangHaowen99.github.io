@@ -1,5 +1,5 @@
 baseURL = "https://WangHaowen99.github.io/"
-languageCode = "zh-CN"
+locale = "zh-CN"
 title = "WangHaowen99"
 enableRobotsTXT = true
 hasCJKLanguage = true
