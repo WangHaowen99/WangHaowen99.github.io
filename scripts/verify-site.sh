@@ -70,7 +70,14 @@ if grep -R -Fq "闪念" public; then
 fi
 grep -Fq "目录" public/posts/2026/building-this-site/index.html
 grep -Fq "评论" public/posts/2026/building-this-site/index.html
-grep -Fq "Giscus is not configured yet" public/posts/2026/building-this-site/index.html
+grep -Fq 'https://giscus.app/client.js' public/posts/2026/building-this-site/index.html
+grep -Fq 'data-repo=WangHaowen99/WangHaowen99.github.io' public/posts/2026/building-this-site/index.html
+grep -Fq 'data-repo-id=R_kgDOSaPVQw' public/posts/2026/building-this-site/index.html
+grep -Fq 'data-category=Announcements' public/posts/2026/building-this-site/index.html
+grep -Fq 'data-category-id=DIC_kwDOSaPVQ84C8x7V' public/posts/2026/building-this-site/index.html
+grep -Fq 'data-mapping=pathname' public/posts/2026/building-this-site/index.html
+grep -Fq 'data-theme=light' public/posts/2026/building-this-site/index.html
+grep -Fq 'data-lang=zh-CN' public/posts/2026/building-this-site/index.html
 
 giscus_tmp_dir="$(mktemp -d)"
 trap 'rm -rf "$giscus_tmp_dir"' EXIT

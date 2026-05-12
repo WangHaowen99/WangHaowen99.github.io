@@ -19,9 +19,9 @@ mainSections = ["posts"]
 [params.giscus]
 enabled = true
 repo = "WangHaowen99/WangHaowen99.github.io"
-repoID = ""
+repoID = "R_kgDOSaPVQw"
 category = "Announcements"
-categoryID = ""
+categoryID = "DIC_kwDOSaPVQ84C8x7V"
 mapping = "pathname"
 strict = "0"
 reactionsEnabled = "1"

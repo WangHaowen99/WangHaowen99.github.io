@@ -1,6 +1,6 @@
 # Giscus Setup
 
-The site includes a Giscus comments partial. It stays inactive until the repository and category IDs are filled in `hugo.toml`.
+The site includes a Giscus comments partial. Repository and category IDs are configured in `hugo.toml`; the remaining external requirement is authorizing the Giscus GitHub App for this repository.
 
 ## Repository
 
@@ -52,15 +52,15 @@ WangHaowen99/WangHaowen99.github.io
 
    The remaining generated script values can stay as configured unless they are intentionally changed.
 
-6. Copy the generated `data-repo-id` and `data-category-id` values into `hugo.toml`:
+6. Confirm the generated `data-repo-id` and `data-category-id` values match `hugo.toml`:
 
    ```toml
    [params.giscus]
-   repoID = "COPY_REPO_ID_FROM_GISCUS"
-   categoryID = "COPY_CATEGORY_ID_FROM_GISCUS"
+   repoID = "R_kgDOSaPVQw"
+   categoryID = "DIC_kwDOSaPVQ84C8x7V"
    ```
 
-7. Commit and push the updated config:
+7. If either value changes, commit and push the updated config:
 
    ```bash
    git add hugo.toml
@@ -74,4 +74,4 @@ WangHaowen99/WangHaowen99.github.io
 - Comments are stored as public GitHub Discussions.
 - Visitors must authorize GitHub and Giscus to comment.
 
-Until `repoID` and `categoryID` are configured, article pages show a short setup note instead of a broken comments widget.
+If `repoID` or `categoryID` is removed, article pages show a short setup note instead of a broken comments widget.
