@@ -80,6 +80,11 @@ url = "/life/"
 weight = 50
 
 [[menus.main]]
+name = "搜索"
+url = "/search/"
+weight = 55
+
+[[menus.main]]
 name = "About"
 url = "/about/"
 weight = 60

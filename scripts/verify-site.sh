@@ -13,6 +13,10 @@ if ! command -v perl >/dev/null 2>&1; then
   echo "perl is required for generated HTML checks." >&2
   exit 1
 fi
+if ! command -v npx >/dev/null 2>&1; then
+  echo "npx is required to build the Pagefind search index." >&2
+  exit 1
+fi
 
 hugo_version="$(hugo version)"
 if [[ "$hugo_version" != *"v0.161.1"* || "$hugo_version" != *"+extended"* ]]; then
@@ -22,6 +26,8 @@ fi
 
 rm -rf public
 hugo --minify
+npx -y pagefind@1.5.2 --site public
+sed -i "s/__CACHE_VERSION__/local-verification/g" public/sw.js
 
 required_files=(
   "public/index.html"
@@ -30,10 +36,20 @@ required_files=(
   "public/projects/index.html"
   "public/life/index.html"
   "public/about/index.html"
+  "public/search/index.html"
   "public/tags/index.html"
   "public/categories/index.html"
   "public/series/index.html"
   "public/index.xml"
+  "public/manifest.webmanifest"
+  "public/sw.js"
+  "public/offline.html"
+  "public/icons/icon-192.png"
+  "public/icons/icon-512.png"
+  "public/icons/icon-maskable-512.png"
+  "public/icons/apple-touch-icon.png"
+  "public/pagefind/pagefind-ui.css"
+  "public/pagefind/pagefind-ui.js"
 )
 
 for file in "${required_files[@]}"; do
@@ -58,7 +74,7 @@ nav_text="$(
     }
   ' public/index.html
 )"
-expected_nav=$'首页\n文章\n专栏\n项目\n生活\nAbout'
+expected_nav=$'首页\n文章\n专栏\n项目\n生活\n搜索\nAbout'
 if [ "$nav_text" != "$expected_nav" ]; then
   echo "Unexpected navigation links." >&2
   printf 'Expected:\n%s\nActual:\n%s\n' "$expected_nav" "$nav_text" >&2
@@ -70,6 +86,18 @@ if grep -R -Fq "闪念" public; then
 fi
 grep -Fq "目录" public/posts/2026/building-this-site/index.html
 grep -Fq "评论" public/posts/2026/building-this-site/index.html
+grep -Fq 'rel=manifest href=/manifest.webmanifest' public/index.html
+grep -Fq 'name=theme-color content=#1a73e8' public/index.html
+grep -Fq 'src=/js/pwa.js' public/index.html
+grep -Fq '全文搜索' public/search/index.html
+grep -Fq '/pagefind/pagefind-ui.js' public/search/index.html
+grep -Fq 'navigator.serviceWorker.register' public/js/pwa.js
+grep -Fq 'WH 笔记' public/manifest.webmanifest
+grep -Fq 'local-verification' public/sw.js
+if grep -Fq '__CACHE_VERSION__' public/sw.js; then
+  echo "Service worker cache version was not stamped." >&2
+  exit 1
+fi
 grep -Fq 'https://giscus.app/client.js' public/posts/2026/building-this-site/index.html
 grep -Fq 'data-repo=WangHaowen99/WangHaowen99.github.io' public/posts/2026/building-this-site/index.html
 grep -Fq 'data-repo-id=R_kgDOSaPVQw' public/posts/2026/building-this-site/index.html

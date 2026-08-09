@@ -3,11 +3,13 @@
   <head>
     {{ partial "head.html" . }}
   </head>
-  <body>
+  {{ $searchExcluded := or (not .IsPage) (eq (.Param "searchExclude") true) }}
+  <body{{ if $searchExcluded }} data-pagefind-ignore{{ end }}>
     {{ partial "nav.html" . }}
     <main class="site-main">
       {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}
+    <script src="{{ "js/pwa.js" | relURL }}" defer></script>
   </body>
 </html>

@@ -5,16 +5,27 @@
 <meta name="description" content="{{ $description }}">
 <meta name="author" content="{{ site.Params.author }}">
 <meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#1a73e8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="WH 笔记">
 <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:description" content="{{ $description }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <link rel="canonical" href="{{ .Permalink }}">
+<link rel="manifest" href="{{ "manifest.webmanifest" | relURL }}">
+<link rel="icon" type="image/svg+xml" href="{{ "icons/icon.svg" | relURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "icons/favicon-32.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "icons/apple-touch-icon.png" | relURL }}">
 {{ with .OutputFormats.Get "RSS" }}
 <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
 {{ end }}
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='86'%3EWH%3C/text%3E%3C/svg%3E">
 {{ with resources.Get "css/main.css" }}
   {{ $css := . | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ end }}
+{{ if eq .Layout "search" }}
+  <link rel="stylesheet" href="{{ "pagefind/pagefind-ui.css" | relURL }}">
 {{ end }}

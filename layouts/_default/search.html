@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section class="page-header container" data-pagefind-ignore>
+  <p class="eyebrow">Search</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="page-intro">{{ . }}</p>{{ end }}
+</section>
+
+<section class="container search-page" data-pagefind-ignore>
+  <p class="search-hint">输入标题、正文或标签中的关键词。中文内容已启用分词检索。</p>
+  <div id="search" role="search"></div>
+  <noscript><p class="muted">请启用 JavaScript 后使用全文搜索。</p></noscript>
+</section>
+
+<script src="{{ "pagefind/pagefind-ui.js" | relURL }}"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    new PagefindUI({
+      element: "#search",
+      showSubResults: false,
+      showImages: false,
+      excerptLength: 30,
+      focusOnSlash: true,
+      translations: {
+        placeholder: "搜索全部笔记……"
+      }
+    });
+  });
+</script>
+{{ end }}

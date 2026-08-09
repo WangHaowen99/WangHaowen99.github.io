@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="WH 笔记">
+  <rect width="512" height="512" rx="112" fill="#1a73e8"/>
+  <g fill="none" stroke="#ffffff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M76 150l44 212 58-117 58 117 44-212"/>
+    <path d="M324 150v212M436 150v212M324 256h112"/>
+  </g>
+</svg>
